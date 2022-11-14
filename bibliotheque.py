@@ -2,6 +2,17 @@ import random, string
 
 #fonction pour permettre a l'utulisateur de choisir un niveau
 def choix_niveau():
+    """
+    Objectif: c'est pour permettre a l'utulisateur de choisir un niveau
+    Methode: Utilisation d'instructions sequentielles
+    Besoins: ----
+    Entrees: choix
+    Connus: ----
+    Sortie: choix
+    Resultats: le niveau choisie
+    Hypotheses: choix = 1 ou choix = 2 ou choix = 3
+    
+    """
     choix = 0
     while (choix != 1 and choix != 2 and choix != 3):
         print("Choisir un niveau de 1 a 3: ")
@@ -13,6 +24,17 @@ def choix_niveau():
 
 #fonction affichage du pendu en fonction du nombre de tentatives
 def pendu(tentatives):
+    """
+    Objectif: c'est d'affiche une pendu en fonction du nombre de tentatives
+    Methode: Utilisation d'instructions sequentielles
+    Besoins: le nombre de tentatives
+    Entrees: tentatives
+    Connus: ----
+    Sortie: ----
+    Resultats: une pendu
+    Hypotheses: 0 <= tentatives <= 6
+    
+    """
     if tentatives == 6:
         print(" ====y=========")
         print(" ||/ | ")
@@ -66,6 +88,17 @@ def pendu(tentatives):
 
 #fonction permets de charger un mot dans la liste en fonction du niveau
 def charger_mots():
+    """
+    Objectif: c'est pour permettre de charger un mot dans la liste en fonction du niveau
+    Methode: Utilisation d'instructions sequentielles
+    Besoins: niveau , fichier des mots
+    Entrees: ----
+    Connus: niveau
+    Sortie: mot
+    Resultats: les mots et le nombre de mots pour le niveau choisie
+    Hypotheses: ----
+    
+    """
     niveau = choix_niveau()
 
     # mots=[]
@@ -84,9 +117,6 @@ def charger_mots():
     if (niveau == 3):
         while (not (len(mot) > 7)):
             mot = random.choice(mots)
-    # chaine=mot.replace("\\n","");
-    # chaine=mot.replace(" ","")
-    # chaine="fatima"
     print(mot)
     print("je vous propose un mot de ", len(mot), " lettres.De quel mot s'agit-t'il?")
     print("#################################################")
@@ -94,6 +124,17 @@ def charger_mots():
 
 #fonction pour afficher le mot dans le jeu
 def affichage_mot(lettres_trouvees,solution):
+    """
+    Objectif: c'est pour afficher le mot a deviner 
+    Methode: Utilisation d'instructions sequentielles
+    Besoins: lettres_trouvees , solution
+    Entrees: lettres_trouvees , solution
+    Connus: lettres_trouvees , solution
+    Sortie: affichage
+    Resultats: affichage du mot 
+    Hypotheses: ----
+    
+    """
     affichage = ""
     for x in solution:
         if x in lettres_trouvees:
@@ -104,6 +145,17 @@ def affichage_mot(lettres_trouvees,solution):
 
 #fontion pour jouer une partie
 def jeu(solution,num_partie):
+    """
+    Objectif: c'est pour jouer une partie
+    Methode: Utilisation d'instructions sequentielles
+    Besoins: solution, num_partie
+    Entrees: solution, num_partie
+    Connus: solution, num_partie
+    Sortie: ----
+    Resultats: ----
+    Hypotheses: ----
+    
+    """
     tab_score=[]
     score=0
     score_max=0
@@ -170,6 +222,17 @@ def jeu(solution,num_partie):
 
 #fonction pour calculer le nombre de lettre unique
 def nombre_lettre_unique(solution):
+    """
+    Objectif: c'est pour calculer le nombre de lettre unique
+    Methode: Utilisation d'instructions sequentielles
+    Besoins: solution
+    Entrees: solution
+    Connus: ----
+    Sortie: nb_lettre_unique
+    Resultats: ----
+    Hypotheses: ----
+    
+    """
     nb_lettre_unique=0
     d1=dict()
     for c in solution:
@@ -184,6 +247,17 @@ def nombre_lettre_unique(solution):
 
 #fonction pour ecrire dans le log_name.txt
 def log_name(niveau,score,nb_tentatives,num_partie):
+    """
+    Objectif: c'est pour ecrire dans le log_name.txt
+    Methode: Utilisation d'instructions sequentielles
+    Besoins: niveau,score,nb_tentatives,num_partie
+    Entrees: niveau,score,nb_tentatives,num_partie
+    Connus: log_name.txt
+    Sortie: ----
+    Resultats: ----
+    Hypotheses: ----
+    
+    """
     fichier=open("log_name.txt","w")
     fichier.write("partie:"+str(num_partie)+"\nniveau:"+str(niveau)+"\nle score"+str(score)+"\nnombre de tentatives"+str(nb_tentatives))
     fichier.close()
