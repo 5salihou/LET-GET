@@ -3,7 +3,7 @@ if __name__ == '__main__':
 
         continuer=0
         num_partie = 1
-       #  print("PARTIE 1")
+        print("PARTIE 1")
         print("\nBienvenue dans le jeu LET-GET")
         print("\n###########################################")
         while(continuer==0):
