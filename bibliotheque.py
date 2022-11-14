@@ -2,6 +2,7 @@ import random, string
 
 #fonction pour permettre a l'utulisateur de choisir un niveau
 def choix_niveau():
+     
     """
     Objectif: c'est pour permettre a l'utulisateur de choisir un niveau
     Methode: Utilisation d'instructions sequentielles
@@ -16,7 +17,7 @@ def choix_niveau():
     choix = 0
     while (choix != 1 and choix != 2 and choix != 3):
         print("Choisir un niveau de 1 a 3: ")
-        choix = int(input("Entrer un nombre"))
+        choix = int(input("\nEntrer un nombre : "))
         print("####################################")
     return choix
 
@@ -78,7 +79,7 @@ def pendu(tentatives):
         print(" || /|\ ")
         print("/|| / ")
         print("==============\n")
-    if (tentatives == 0):
+    if (tentatives < 0):
         print("=====Y======== ")
         print(" ||/ | ")
         print(" ||  0 ")
@@ -105,7 +106,7 @@ def charger_mots():
     motsFile = open('mots.txt')
     mots = list(motsFile.read().split('\n'))
     mot = ""
-    print("Vous avez choisi le niveau ", niveau)
+    print("Vous avez choisi le niveau : ", niveau)
     print("chargement des donnéés...")
     print("8964 mots chargés")
     if (niveau == 1):
@@ -117,7 +118,10 @@ def charger_mots():
     if (niveau == 3):
         while (not (len(mot) > 7)):
             mot = random.choice(mots)
-    print(mot)
+    # chaine=mot.replace("\\n","");
+    # chaine=mot.replace(" ","")
+    # chaine="fatima"
+    # print(mot)
     print("je vous propose un mot de ", len(mot), " lettres.De quel mot s'agit-t'il?")
     print("#################################################")
     return mot
@@ -172,7 +176,7 @@ def jeu(solution,num_partie):
     while (tentatives > 0):
         print(affichage)
         proposition = input("saisir une lettre: ")
-        if proposition in solution:
+        if proposition in solution and proposition not in lettres_trouvees:
             lettres_trouvees += proposition
             print("Bravo, lettre correcte")
         else:
@@ -180,17 +184,22 @@ def jeu(solution,num_partie):
                 point_erreur -= 1
                 print("Vous ne devez saisir que des lettres de l'alphabet \n il vous reste", point_erreur,
                       "avertissements")
-                if (point_erreur == 0):
-                    print("vous avez epuisez votre cartouche de points erreurs")
-                    tentatives -= 1
+
             else:
-                if proposition in voyelles:
-                    print("Vous avez saisi une voyelle qui n'est pas dans le mot.\nVous perdez deux tentatives. ")
-                    print("#########################################")
-                    tentatives -= 2
+                if proposition in lettres_trouvees:
+                    point_erreur -= 1
+                    print("lettre deja trouve\nil vous reste",point_erreur,"avertissement")
                 else:
-                    print("Vous avez saisi une consonne qui n'est pas dans le mot.\nVous perdez une tentative.")
-                    tentatives -= 1
+                    if proposition in voyelles:
+                        print("Vous avez saisi une voyelle qui n'est pas dans le mot.\nVous perdez deux tentatives. ")
+                        print("#########################################")
+                        tentatives -= 2
+                    else:
+                        print("Vous avez saisi une consonne qui n'est pas dans le mot.\nVous perdez une tentative.")
+                        tentatives -= 1
+            if (point_erreur == 0):
+                print("vous avez epuisez votre cartouche de points erreurs")
+                tentatives -= 1
             if(tentatives>0):
                 print("il vous reste", tentatives, "tentatives")
                 print("######################################")
@@ -199,14 +208,9 @@ def jeu(solution,num_partie):
 
         affichage=affichage_mot(lettres_trouvees, solution)
         if "-" not in affichage:
-            nb_tent_rest = 6 - tentatives
-            print("nbtr",nb_tent_rest)
             nb_lettre_unique = nombre_lettre_unique(solution)
-            print("LU",nb_lettre_unique)
-            score = nb_tent_rest * nb_lettre_unique
+            score = tentatives * nb_lettre_unique
             print("SC",score)
-            tab_score.append(score)
-
             print("______________________________________________________")
             print("Félicitation : Vous avez deviné le mot.")
             print("Votre score:",score)

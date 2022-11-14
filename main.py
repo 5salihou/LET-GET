@@ -3,15 +3,15 @@ if __name__ == '__main__':
 
         continuer=0
         num_partie = 1
-        print("PARTIE 1")
+       #  print("PARTIE 1")
         print("\nBienvenue dans le jeu LET-GET")
-        print("###########################################")
+        print("\n###########################################")
         while(continuer==0):
-               print("vous avez 3 points erreurs")
-               print("###########################################")
-               print("Vous avez 6 tentatives")
-               print("###########################################\n\n")
-               pendu(6)
+              #  print("vous avez 3 points erreurs")
+              #  print("###########################################")
+              #  print("Vous avez 6 tentatives")
+              #  print("###########################################\n\n")
+              #  pendu(6)
                jeu(charger_mots(),num_partie)
                print("---------------------------------------------------------------------------------------------------------------------")
                num_partie += 1
